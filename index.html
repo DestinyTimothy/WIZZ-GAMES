@@ -10,12 +10,21 @@
 <body class="background-image">
 
 
+    <audio id="myAudio">
+        <source src="virtual-memory-uplifting-gaming-synthwave-199942.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
 
     <section id="body" class=" pt-10">
         <div>
             <h1 class="text-4xl md:text-6xl font-bold text-white text-center pt-20">Welcome, to <br><span class="text-6xl md:text-8xl text-blue-400">Wizz Games</span></h1>
         </div>
     </section>
+
+    <div class="grid place-content-center pt-8">
+        <button onclick="document.getElementById('myAudio').play()" class="bg-blue-700 text-white p-2 rounded-lg">Play Audio</button>
+    </div>
 
     <section id="links" class="pt-14">
         <p class="text-center text-white pb-10">Simply select a game to play <br> <i> [ISome games work better in desktop mode] </i></p>
@@ -144,15 +153,42 @@
             </div>
 
         </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold text-white text-center pt-20">Play more games</h1>
+
+        <div class="cards flex-row  justify-center space-y-20 md:flex md:space-x-20 md:space-y-0 py-20 ">
+
+            <div class="container w-4/5 m-auto md:m-0 md:w-1/4 shadow-xl">
+                <a href="https://poki.com/">
+                    <img src="images/poki.jpg" alt="poki img" class="rounded-t-lg h-48 w-full">
+                    <h3 class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-center py-3 font-bold rounded-b-lg hover:bg-blue-600">Poki</h3>
+                </a>
+            </div>
+
+            <div class="container w-4/5 m-auto md:m-0 md:w-1/4 shadow-xl rounded-t-lg rounded-b-lg bg-blue-700">
+                <a href="https://neal.fun/">
+                    <img src="images/neal fun.jpg" alt="neal.fun img" class="rounded-t-lg h-48 w-full">
+                    <h3 class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-center py-3 font-bold rounded-b-lg hover:bg-blue-600">Neal.fun</h3>
+                </a>
+            </div>
+
+            <div class="container w-4/5 m-auto md:m-0 md:w-1/4 shadow-xl rounded-t-lg rounded-b-lg bg-blue-700">
+                <a href="https://www.cartoonnetworkhq.com/games">
+                    <img  src="images/Cartoon Network Games.jpg" alt="cartoon network games img" class="rounded-t-lg h-48 w-full">
+                    <h3 class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-center py-3 font-bold rounded-b-lg hover:bg-blue-600">Cartoon Network Games</h3>
+                </a>
+            </div>
+
+        </div>
         
     </section>
 
     <section id="footer" class="text-center py-20">
         <h3 class="text-white">
-            Made with ❤ by <a href="https://destiny-timothy.vercel.app/" class="text-red-600 font-bold">Destiny Timothy</a> for Wisdom
+            Made with ❤ by <a href="https://destiny-timothy.vercel.app/" class="text-blue-400 font-bold">Destiny Timothy</a> for Wisdom
         </h3>
         <h4>
-            <a href="sources.html" class="text-red-600 font-bold">Game Source Code & Credits</a>
+            <a href="sources.html" class="text-blue-400 font-bold">Game Source Code & Credits</a>
         </h4>
 
     </section>
