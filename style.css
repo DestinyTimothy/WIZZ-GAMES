@@ -1,0 +1,20 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Iso&family=Satisfy&family=Zilla+Slab:wght@300;400;500;600;700&display=swap');
+
+.background-image{
+    background-image: url('images/4fca8007-a0e2-4a24-89f5-a320b6b642ad.png'); /* Add the path to your image here */
+    background-size: cover; /* This makes the image cover the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Fixes the image in place when scrolling */
+    height: 100vh; /* Makes the body height match the viewport */
+    width: 100vw; /* Ensures full width */
+    filter: brightness(100%);
+}
+
+body {
+    font-family: "Rubik Iso", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
