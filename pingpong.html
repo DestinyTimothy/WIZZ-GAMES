@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Touch-Controlled Ping Pong</title>
+  <style>
+    body {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    canvas {
+      background: #333;
+      display: block;
+      margin: 20px auto;
+      border: 2px solid #fff;
+    }
+    #scoreboard {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas" width="800" height="600"></canvas>
+  <div id="scoreboard">Score: Top Player 0 - Bottom Player 0</div>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const paddleWidth = 120, paddleHeight = 15, ballSpeed = 5;
+    const topPaddle = { x: (canvas.width - paddleWidth) / 2, y: 20, width: paddleWidth, height: paddleHeight };
+    const bottomPaddle = { x: (canvas.width - paddleWidth) / 2, y: canvas.height - paddleHeight - 20, width: paddleWidth, height: paddleHeight };
+    let ball = { x: canvas.width / 2, y: canvas.height / 2, radius: 10, vx: ballSpeed, vy: ballSpeed };
+    let scoreTop = 0, scoreBottom = 0, gameOver = false;
+
+    function update() {
+      if (gameOver) return;
+      ball.x += ball.vx;
+      ball.y += ball.vy;
+      if (ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) ball.vx = -ball.vx;
+      if (ballCollides(topPaddle)) ball.vy = Math.abs(ball.vy);
+      if (ballCollides(bottomPaddle)) ball.vy = -Math.abs(ball.vy);
+      if (ball.y - ball.radius < 0) { scoreBottom++; resetBall(); }
+      if (ball.y + ball.radius > canvas.height) { scoreTop++; resetBall(); }
+      if (scoreTop >= 10 || scoreBottom >= 10) gameOver = true;
+    }
+
+    function ballCollides(paddle) {
+      return ball.y + ball.radius >= paddle.y && ball.y - ball.radius <= paddle.y + paddle.height && ball.x >= paddle.x && ball.x <= paddle.x + paddle.width;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'blue';
+      ctx.fillRect(topPaddle.x, topPaddle.y, topPaddle.width, topPaddle.height);
+      ctx.fillStyle = 'red';
+      ctx.fillRect(bottomPaddle.x, bottomPaddle.y, bottomPaddle.width, bottomPaddle.height);
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'lime';
+      ctx.fill();
+      document.getElementById('scoreboard').innerText = `Score: Top Player ${scoreTop} - Bottom Player ${scoreBottom}`;
+    }
+
+    function resetBall() {
+      ball.x = canvas.width / 2;
+      ball.y = canvas.height / 2;
+      ball.vx = (Math.random() > 0.5 ? 1 : -1) * ballSpeed;
+      ball.vy = (Math.random() > 0.5 ? 1 : -1) * ballSpeed;
+    }
+
+    function handleTouchMove(event) {
+      event.preventDefault();
+      const touch = event.touches[0];
+      const rect = canvas.getBoundingClientRect();
+      const touchX = touch.clientX - rect.left;
+      if (touch.clientY - rect.top < canvas.height / 2) topPaddle.x = touchX - topPaddle.width / 2;
+      else bottomPaddle.x = touchX - bottomPaddle.width / 2;
+    }
+
+    canvas.addEventListener('touchmove', handleTouchMove);
+    function gameLoop() { update(); draw(); requestAnimationFrame(gameLoop); }
+    resetBall(); gameLoop();
+  </script>
+</body>
+</html>
